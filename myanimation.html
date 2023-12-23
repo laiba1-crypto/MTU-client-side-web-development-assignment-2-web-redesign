@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 50px auto;
+    }
+
+    .submit-button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease-in;
+    }
+
+    .submit-button.animate:hover {
+      transform: translateX(100px);
+      animation: left-to-right 1s ease-in;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="contact-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" required></textarea>
+    <br>
+
+    <button type="button" class="submit-button" onmouseover="validateForm()">Submit</button>
+    <p id="error-message" class="error"></p>
+  </form>
+
+  <script>
+    function validateForm() {
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+      var errorMessage = document.getElementById('error-message');
+      var submitButton = document.querySelector('.submit-button');
+
+      if (name === '' || email === '' || message === '') {
+        errorMessage.textContent = 'Please fill out all fields.';
+        submitButton.classList.add('animate');
+      } else {
+        errorMessage.textContent = '';
+        submitButton.classList.remove('animate');
+        // Add additional form submission logic here if needed
+        // For demonstration purposes, just logging the success message
+        console.log('Form submitted successfully!');
+      }
+    }
+  </script>
+
+</body>
+</html>
